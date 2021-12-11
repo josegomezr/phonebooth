@@ -1,0 +1,15 @@
+{% extends "phonebooth/base.html" %}
+
+{% block title %}Login{% endblock %}
+{% block body %}
+
+
+<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+  {{ form }}
+
+  <div class="submit-row">
+    <button type="submit">Login</button>
+  </div>
+</form>
+
+{% endblock %}
