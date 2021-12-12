@@ -4,7 +4,7 @@
 {% block body %}
 
 
-<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+<form hx-boost="false" action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
   {{ form }}
 
   <div class="submit-row">
