@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'phonebooth',
     'authentication',
+    'django.forms',
 ]
 
 MIDDLEWARE = [
@@ -57,10 +58,7 @@ ROOT_URLCONF = 'phonebooth.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            'phonebooth/templates/',
-            'templates/',
-        ],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -115,8 +113,6 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
-
 USE_TZ = True
 
 
@@ -141,3 +137,4 @@ LOGIN_REDIRECT_URL = '/auth/profile/'
 # After logout go to login view
 LOGOUT_REDIRECT_URL = '/auth/login/'
 
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
