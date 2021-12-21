@@ -1,4 +1,6 @@
 import types
+
+from django.conf import settings
 from django.forms.widgets import Input, Select
 from django.forms.utils import ErrorDict as BaseErrorDict, ErrorList as BaseErrorList
 from django.utils.html import format_html, html_safe, format_html_join
@@ -12,6 +14,14 @@ def _get_feedback_class(self, form, key='controls'):
         return form.css_classes['feedback_status'][key]['valid']
 
     return ''
+
+def decorate_class(klass, *other_klasses):
+    return type(klass)(klass.__name__, tuple(reversed([klass, *other_klasses])), {})
+
+
+class BootstrapifyFormMixin:
+    def get_form_class(self):
+        return decorate_class(super().get_form_class(), BootstrapifyMixin)
 
 class BootstrapifyMixin:
     css_classes = {
@@ -79,7 +89,6 @@ class BootstrapifyMixin:
             return inner
 
         bf.as_widget  = types.MethodType(wrap(bf), bf)
-        return
 
 
     def __init__(self, *args, **kwargs):
@@ -118,8 +127,3 @@ class MyOwnErrorDict(BaseErrorDict):
         return format_html(
             f'<div class="alert alert-danger" role="alert"><ul class="errorlist">{res}</ul></div>'
         )
-
-
-
-
-

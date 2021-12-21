@@ -4,13 +4,10 @@
 {% block body %}
 
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 
 <h1>Login</h1>
 
-<form autocomplete action="{{ app_path }}" method="post" id="login-form">
+<form autocomplete hx-push-url="true" method="post" id="login-form">
   {% csrf_token %}
 
   {% include "phonebooth/forms/form-non-field-errors-ul.html" with form=form %}

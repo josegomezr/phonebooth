@@ -1,0 +1,27 @@
+{% extends "phonebooth/base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+<h1>Edit your details</h1>
+
+<form autocomplete hx-push-url="true" action="{{ app_path }}" method="post" id="login-form">
+  {% csrf_token %}
+
+  {% include "phonebooth/forms/form-non-field-errors-ul.html" with form=form %}
+
+  <div class="mb-3">
+    {% include "phonebooth/forms/form-field.html" with field=form.first_name %}
+  </div>
+
+  <div class="mb-3">
+    {% include "phonebooth/forms/form-field.html" with field=form.last_name %}
+  </div>
+
+  <div class="submit-row">
+    <button class="btn btn-primary" type="submit">Save</button>
+  </div>
+</form>
+
+
+{% endblock %}
