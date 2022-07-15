@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 from os import getenv
 
+from django.contrib.messages import constants as messages
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +28,7 @@ SECRET_KEY = 'django-insecure-key'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'phonebooth',
     'authentication',
+    'django.forms',
 ]
 
 MIDDLEWARE = [
@@ -57,10 +60,7 @@ ROOT_URLCONF = 'phonebooth.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            'phonebooth/templates/',
-            'templates/',
-        ],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'phonebooth.context_processors.settings',
             ],
         },
     },
@@ -115,8 +116,6 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
-
 USE_TZ = True
 
 
@@ -136,8 +135,29 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'authentication.User'
 
 # After login go to profile view
-LOGIN_REDIRECT_URL = '/auth/profile'
+LOGIN_REDIRECT_URL = 'authentication:profile-show'
 
 # After logout go to login view
-LOGOUT_REDIRECT_URL = '/auth/login'
+LOGOUT_REDIRECT_URL = LOGIN_URL = '/auth/login/'
 
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
+
+GLOBAL_EXPOSED_SETTINGS = [
+    'LOGIN_REDIRECT_URL'
+]
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'secondary',
+    messages.INFO: 'primary',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
+}
+
+MESSAGE_ICONS = {
+    messages.DEBUG: '⚙️',
+    messages.INFO: '🆙',
+    messages.SUCCESS: '✅',
+    messages.WARNING: '⚠',
+    messages.ERROR: '❌',
+}

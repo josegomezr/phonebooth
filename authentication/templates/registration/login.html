@@ -3,13 +3,25 @@
 {% block title %}Login{% endblock %}
 {% block body %}
 
+<p>&nbsp;</p>
 
-<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
-  {{ form }}
+<h1>Login</h1>
+
+<form autocomplete hx-push-url="true" method="post" id="login-form">
+  {% csrf_token %}
+
+  {% include "phonebooth/forms/form-non-field-errors-ul.html" with form=form %}
+
+  <div class="mb-3">
+    {% include "phonebooth/forms/form-field.html" with field=form.username %}
+  </div>
+
+  <div class="mb-3">
+    {% include "phonebooth/forms/form-field.html" with field=form.password %}
+  </div>
 
   <div class="submit-row">
-    <button type="submit">Login</button>
+    <button class="btn btn-primary" type="submit">Login</button>
   </div>
 </form>
-
 {% endblock %}
