@@ -7,7 +7,7 @@
 
 <h1>Login</h1>
 
-<form autocomplete hx-push-url="true" method="post" id="login-form">
+<form autocomplete hx-boost="false" action="{% url 'authentication:login' %}" method="post" id="login-form">
   {% csrf_token %}
 
   {% include "phonebooth/forms/form-non-field-errors-ul.html" with form=form %}
