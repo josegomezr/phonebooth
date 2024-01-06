@@ -1,0 +1,45 @@
+{% extends "phonebooth/base.html" %}
+
+{% block title %}Calls{% endblock %}
+
+{% block breadcrumbs %}
+<li class="breadcrumb-item"><a href="{% url 'authentication:profile-show' %}">Home</a></li>
+<li class="breadcrumb-item active" aria-current="page">Calls</li>
+{% endblock %}
+
+{% block body %}
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Status</th>
+      <th scope="col">To</th>
+      <th scope="col">Price</th>
+      <th scope="col">Duration</th>
+      <th scope="col">Created at</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for call in object_list %}
+    <tr>
+        <td>{{ call.id }}</td>
+        <td>{{ call.status }}</td>
+        <td>{{ call.to }} seconds</td>
+        <td>{{ call.price }}</td>
+        <td>{{ call.duration }}</td>
+        <td>{{ call.created_at }}</td>
+        <td>
+            <a href="{% url 'calls:detail' id=call.id %}" class="btn btn-info">
+              👁️ View
+            </a>
+
+        </td>
+    </tr>
+    {% empty %}
+        No calls yet.
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

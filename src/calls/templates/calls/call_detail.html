@@ -1,0 +1,48 @@
+{% extends "phonebooth/base.html" %}
+
+{% block title %}Call #{{object.id}} details{% endblock %}
+
+{% block breadcrumbs %}
+<li class="breadcrumb-item"><a href="{% url 'authentication:profile-show' %}">Home</a></li>
+<li class="breadcrumb-item"><a href="{% url 'calls:list' %}">Calls</a></li>
+<li class="breadcrumb-item active" aria-current="page">#{{ object.id }}</li>
+{% endblock %}
+
+{% block body %}
+
+<div class="form-group">
+  <label for="call_id">No. #</label>
+  <input type="text" class="form-control" id="call_id" value="{{ call.id }}" disabled>
+</div>
+
+<div class="form-group">
+  <label for="status">Status</label>
+  <input type="text" class="form-control" id="call_status" value="{{ call.status }}" disabled>
+</div>
+
+<div class="form-group">
+  <label for="to">To</label>
+  <input type="text" class="form-control" id="call_to" value="{{ call.to | default:"N/A" }}" disabled>
+</div>
+
+<div class="form-group">
+  <label for="price">Price</label>
+  <input type="text" class="form-control" id="call_price" value="{{ call.price | default:"N/A" }}" disabled>
+</div>
+
+<div class="form-group">
+  <label for="duration">Duration</label>
+  <input type="text" class="form-control" id="call_duration" value="{{ call.duration | default:"N/A" }}" disabled>
+</div>
+
+<div class="form-group">
+  <label for="created_at">Created at</label>
+  <input type="text" class="form-control" id="call_created_at" value="{{ call.created_at }}" disabled>
+</div>
+
+<div class="form-group">
+  <label for="updated_at">Last updated at</label>
+  <input type="text" class="form-control" id="call_updated_at" value="{{ call.updated_at | default:"N/A" }}" disabled>
+</div>
+
+{% endblock %}

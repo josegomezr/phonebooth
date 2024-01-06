@@ -5,6 +5,8 @@ from django.conf import settings
 
 class Call(models.Model):
     class Status(models.TextChoices):
+        # The call is freshly created in the system
+        CREATED = "created", _('Created')
         # The call is ready and waiting in line before dialing.
         QUEUED = "queued", _('Enqueued')
         # The call is currently ringing.
@@ -33,7 +35,7 @@ class Call(models.Model):
         max_length=16,
         null=False,
         choices=Status,
-        default=Status.QUEUED,
+        default=Status.CREATED,
     )
 
     to = models.CharField(
@@ -45,12 +47,12 @@ class Call(models.Model):
     price = models.DecimalField(
         max_digits=10,
         decimal_places=5,
-        default=-1
+        null=True
     )
 
     duration = models.SmallIntegerField(
         blank=True,
-        default=-1
+        null=True
     )
 
     created_at = models.DateTimeField(

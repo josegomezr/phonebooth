@@ -1,7 +1,7 @@
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView as BaseUpdateView
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -10,7 +10,7 @@ from phonebooth.utils import BootstrapifyFormMixin
 from authentication.models import User
 
 @method_decorator(login_required, name='dispatch')
-class UpdateView(SuccessMessageMixin, BootstrapifyFormMixin, UpdateView):
+class UpdateView(SuccessMessageMixin, BootstrapifyFormMixin, BaseUpdateView):
     model = User
     fields = ('first_name', 'last_name', 'email')
 

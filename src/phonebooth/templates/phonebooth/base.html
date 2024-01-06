@@ -26,7 +26,7 @@
             {% if user.id %}
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="#">📞 Calls</a>
+                <a class="nav-link" href="{% url 'calls:list' %}">📞 Calls</a>
               </li>
             </ul>
             {% endif %}
@@ -65,7 +65,14 @@
           </div>
           {% endfor %}
         {% endif %}
-
+        
+        {% if not disable_breadcrumbs %}
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            {% block breadcrumbs %}{% endblock %}
+          </ol>
+        </nav>
+        {% endif %}
         {% block body %}{% endblock %}
       </div>
     </div>

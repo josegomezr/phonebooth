@@ -14,6 +14,10 @@ urlpatterns = [
         include('authentication.urls', namespace='authentication')
     ),
     path(
+        'calls/',
+        include('calls.urls', namespace='calls')
+    ),
+    path(
         '',
         lambda request: redirect('auth/login/', permanent=True)
     ),

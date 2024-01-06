@@ -2,8 +2,14 @@
 
 {% block title %}Edit my profile{% endblock %}
 
+{% block breadcrumbs %}
+<li class="breadcrumb-item"><a href="{% url 'authentication:profile-show' %}">Home</a></li>
+<li class="breadcrumb-item active" aria-current="page">Edit profile</li>
+{% endblock %}
+
+
 {% block body %}
-<h1>Edit your details</h1>
+<h1>Edit Profile</h1>
 
 <form autocomplete hx-push-url="true" action="{{ app_path }}" method="post" id="login-form">
   {% csrf_token %}
