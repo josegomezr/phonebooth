@@ -26,7 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+ENVIRONMENT = getenv('PHONEBOOTH_ENV', 'DEVELOPMENT')
+
+DEBUG = getenv('PHONEBOOTH_DEBUG', 'yes' if ENVIRONMENT == 'DEVELOPMENT' else 'no') in ['true', '1', 't', 'y', 'yes']
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -57,6 +61,33 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'phonebooth.urls'
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {name} [p:{process:x}/t:{thread:x}] {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "INFO",
+            "formatter": "verbose"
+        }
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": getenv("DJANGO_LOG_LEVEL", "INFO"),
+        },
+        'django.db.backends': {
+            'level': 'DEBUG',
+        }
+    },
+}
 
 TEMPLATES = [
     {
@@ -123,6 +154,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = getenv('PHONEBOOTH_STATIC_ROOT')
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]

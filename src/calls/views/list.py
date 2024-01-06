@@ -12,5 +12,4 @@ class ListView(BaseListView):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        qs = qs.filter(user=self.request.user)
-        return qs
+        return qs.filter(user=self.request.user)

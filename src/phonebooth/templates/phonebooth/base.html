@@ -66,13 +66,13 @@
           {% endfor %}
         {% endif %}
         
-        {% if not disable_breadcrumbs %}
+        {% block breadcrumbs_container %}
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             {% block breadcrumbs %}{% endblock %}
           </ol>
         </nav>
-        {% endif %}
+        {% endblock %}
         {% block body %}{% endblock %}
       </div>
     </div>

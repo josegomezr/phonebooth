@@ -10,5 +10,5 @@ class DetailView(BaseDetailView):
     model = Call
 
     def get_queryset(self):
-        self.kwargs['pk'] = self.request.user.id
-        return self.model.objects.filter(user=self.request.user).all()
+        qs = super().get_queryset()
+        return qs.filter(user=self.request.user)

@@ -31,7 +31,7 @@
         <td>{{ call.duration }}</td>
         <td>{{ call.created_at }}</td>
         <td>
-            <a href="{% url 'calls:detail' id=call.id %}" class="btn btn-info">
+            <a href="{% url 'calls:detail' pk=call.id %}" class="btn btn-info">
               👁️ View
             </a>
 

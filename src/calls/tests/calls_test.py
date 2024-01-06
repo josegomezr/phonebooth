@@ -56,28 +56,27 @@ class SimpleTest(TestCase):
     return self.skipTest("TODO: Pending test")
 
     response = self.client.get(
-      reverse('calls:detail', id=call.id)
+      reverse('calls:detail', pk=call.id)
     )
 
     self.assertContains(call.id, 'No calls yet')
-
 
   def test_call_detail_404(self):
     self.client.force_login(self.da_user)
 
-    return self.skipTest("TODO: Pending test")
-
     response = self.client.get(
-      reverse('calls:detail', id='99999999999999')
+      reverse('calls:detail', kwargs={'pk':'99999999999999'})
     )
 
-    self.assertContains(call.id, 'No calls yet')
-
+    self.assertEqual(
+      response.status_code,
+      404
+    )
 
   def test_call_detail_bad_id(self):
     self.client.force_login(self.da_user)
 
-    url = reverse('calls:detail', kwargs={'id': 99123499})
+    url = reverse('calls:detail', kwargs={'pk':'99123499'})
     # force a random value in the uri param
     url.replace('/99123499/', 'AAA')
 

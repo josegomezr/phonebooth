@@ -10,7 +10,7 @@ urlpatterns = [
         name='list'
     ),
     path(
-        '<int:id>/',
+        '<int:pk>/',
         views.detail.DetailView.as_view(),
         name='detail'
     ),
