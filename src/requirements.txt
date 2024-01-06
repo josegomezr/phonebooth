@@ -9,4 +9,4 @@
 asgiref==3.4.1; python_version >= '3.6'
 django==3.2.15
 pytz==2022.5
-sqlparse==0.4.3; python_version >= '3.5'
+sqlparse==0.4.4; python_version >= '3.5'
