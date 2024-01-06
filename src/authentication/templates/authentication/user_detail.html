@@ -1,12 +1,9 @@
 {% extends "phonebooth/base.html" %}
 
-{% block title %}Profile{% endblock %}
-
-{% block navigation %}
-
-{% endblock %}
+{% block title %}My profile{% endblock %}
 
 {% block body %}
 
-<pre>Here will be some stats or whatever</pre>
+<pre>Here will be some stats for {{ user.full_name }} or whatever</pre>
+
 {% endblock %}

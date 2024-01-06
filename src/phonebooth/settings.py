@@ -153,8 +153,8 @@ MESSAGE_TAGS = {
 
 MESSAGE_ICONS = {
     messages.DEBUG: '⚙️',
-    messages.INFO: '🆙',
+    messages.INFO: 'ℹ️',
     messages.SUCCESS: '✅',
-    messages.WARNING: '⚠',
+    messages.WARNING: '⚠️',
     messages.ERROR: '❌',
 }
