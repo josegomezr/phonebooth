@@ -68,7 +68,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'phonebooth.context_processors.settings',
             ],
         },
     },
@@ -143,10 +142,6 @@ LOGIN_REDIRECT_URL = 'authentication:profile-show'
 LOGOUT_REDIRECT_URL = LOGIN_URL = '/auth/login/'
 
 FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
-
-GLOBAL_EXPOSED_SETTINGS = [
-    'LOGIN_REDIRECT_URL'
-]
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'secondary',
