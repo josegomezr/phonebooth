@@ -27,4 +27,5 @@ jobs:
     - name: Run Tests
       run: |
         cd src/
+        export DJANGO_SETTINGS_MODULE=phonebooth.settings_test
         python manage.py test -v 2

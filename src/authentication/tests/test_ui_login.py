@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 
-class SimpleTest(TestCase):
+class UILoginTest(TestCase):
   def setUp(self):
     User = get_user_model()
     self.dummy_user = User.objects.create_user(

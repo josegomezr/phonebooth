@@ -25,5 +25,6 @@ class CallAdmin(admin.ModelAdmin):
 
         logger.warn('Enqueuing call pk=%(pk)s', dict(pk=obj.pk))
 
+        use_case = PerformCall()
         req = PerformCall.Request(to=obj.to)
-        PerformCall().execute(req)
+        use_case(req)

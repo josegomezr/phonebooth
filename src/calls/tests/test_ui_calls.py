@@ -6,7 +6,7 @@ from django.urls import reverse
 
 from ..models import Call
 
-class SimpleTest(TestCase):
+class UICallsTest(TestCase):
   def _auth_redirect_url_to(self, to):
     return '{}?{}={}'.format(
         reverse('authentication:login'),
@@ -86,4 +86,3 @@ class SimpleTest(TestCase):
       response.status_code,
       404
     )
-

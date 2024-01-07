@@ -79,7 +79,7 @@ LOGGING = {
         },
         "console-sql": {
             "class": "logging.StreamHandler",
-            "level": "DEBUG",
+            "level": "INFO",
             "formatter": "verbose"
         }
     },

@@ -3,10 +3,14 @@ from dataclasses import dataclass
 class UseCase:
     @dataclass(kw_only=True)
     class Request:
-        pass
+        def __post_init__(self):
+            self.validate()
+
+        def validate(self):
+            pass
 
     def __call__(self, request):
-        if instanceof(request, Request):
+        if not isinstance(request, UseCase.Request):
             raise TypeError('Not a request type')
         return self.execute(request)
 
