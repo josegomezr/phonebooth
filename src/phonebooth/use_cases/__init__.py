@@ -8,6 +8,10 @@ class UseCase:
 
         def validate(self):
             pass
+    
+    @dataclass(kw_only=True)
+    class Response:
+        pass
 
     def __call__(self, request):
         if not isinstance(request, UseCase.Request):

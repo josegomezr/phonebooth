@@ -202,3 +202,8 @@ MESSAGE_ICONS = {
     messages.WARNING: '⚠️',
     messages.ERROR: '❌',
 }
+
+# Your Account SID and Auth Token from console.twilio.com
+TWILIO_FROM_NUMBER = getenv('PHONEBOOTH_TWILIO_FROM_NUMBER')
+TWILIO_ACCOUNT_SID = getenv('PHONEBOOTH_TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = getenv('PHONEBOOTH_TWILIO_AUTH_TOKEN')

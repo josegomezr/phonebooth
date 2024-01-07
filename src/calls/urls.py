@@ -14,4 +14,9 @@ urlpatterns = [
         views.detail.DetailView.as_view(),
         name='detail'
     ),
+    path(
+        '<int:pk>/twilio/voice-xml',
+        views.twilio.voice_xml.VoiceXMLView.as_view(),
+        name='twilio_voice-xml'
+    ),
 ]

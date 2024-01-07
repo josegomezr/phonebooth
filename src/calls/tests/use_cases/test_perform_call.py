@@ -17,4 +17,3 @@ class PerformCallTest(TestCase):
     req = PerformCall.Request(to='+12345667')
     use_case = PerformCall()
     use_case(req)
-
