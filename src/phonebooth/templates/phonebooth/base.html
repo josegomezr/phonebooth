@@ -55,17 +55,6 @@
         </div>
       </nav>
       <div class="container">
-        {% if messages %}
-        {% regroup messages|dictsort:"level" by level_tag as mess_sort %}
-          {% for l, messages in mess_sort %}
-          <div class="messages alert alert-{{ l }}">
-            {% for message in messages %}
-              <p class="{% if forloop.last %}mb-0{% endif %}">{{ message.level|message_icon }} {{ message }}</p>
-            {% endfor %}
-          </div>
-          {% endfor %}
-        {% endif %}
-        
         {% block breadcrumbs_container %}
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
@@ -73,6 +62,17 @@
           </ol>
         </nav>
         {% endblock %}
+
+        {% if messages %}
+        {% regroup messages|dictsort:"level" by level_tag as mess_sort %}
+          {% for level_tag, messages in mess_sort %}
+          <div class="messages alert alert-{{ level_tag }}">
+            {% for message in messages %}
+              <p class="{% if forloop.last %}mb-0{% endif %}">{{ message.level|message_icon }} {{ message }}</p>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        {% endif %}
         {% block body %}{% endblock %}
       </div>
     </div>

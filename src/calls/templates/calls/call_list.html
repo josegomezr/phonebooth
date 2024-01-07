@@ -34,11 +34,12 @@
             <a href="{% url 'calls:detail' pk=call.id %}" class="btn btn-info">
               👁️ View
             </a>
-
         </td>
     </tr>
     {% empty %}
-      No calls yet.
+    <tr>
+        <td colspan="7">No calls yet</td>
+    </tr>
     {% endfor %}
   </tbody>
 </table>

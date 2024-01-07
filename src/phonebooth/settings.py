@@ -67,7 +67,7 @@ LOGGING = {
     "disable_existing_loggers": False,
     "formatters": {
         "verbose": {
-            "format": "{levelname} {asctime} {name} [p:{process:x}/t:{thread:x}] {message}",
+            "format": "{levelname:10s} {asctime} {name:20} [p:{process:x}|{thread:x}]\n{message}\n",
             "style": "{",
         },
     },
@@ -75,6 +75,11 @@ LOGGING = {
         "console": {
             "class": "logging.StreamHandler",
             "level": "INFO",
+            "formatter": "verbose"
+        },
+        "console-sql": {
+            "class": "logging.StreamHandler",
+            "level": "DEBUG",
             "formatter": "verbose"
         }
     },
@@ -84,7 +89,12 @@ LOGGING = {
             "level": getenv("DJANGO_LOG_LEVEL", "INFO"),
         },
         'django.db.backends': {
+            "handlers": ["console-sql"],
             'level': 'DEBUG',
+        },
+        'calls': {
+            "handlers": ["console"],
+            'level': 'INFO',
         }
     },
 }

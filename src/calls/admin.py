@@ -1,5 +1,9 @@
 from django.contrib import admin
 from .models import Call
+from .use_cases.perform_call import PerformCall
+
+import logging
+logger = logging.getLogger("calls")
 
 @admin.register(Call)
 class CallAdmin(admin.ModelAdmin):
@@ -15,3 +19,11 @@ class CallAdmin(admin.ModelAdmin):
     @admin.display(description="ID")
     def expanded_id(self, obj):
         return '#{:06d}'.format(obj.id)
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+
+        logger.warn('Enqueuing call pk=%(pk)s', dict(pk=obj.pk))
+
+        req = PerformCall.Request(to=obj.to)
+        PerformCall().execute(req)
